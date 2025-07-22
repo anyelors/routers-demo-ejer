@@ -1,3 +1,7 @@
+*{
+  background-color:aliceblue;
+}
+
 .App {
   text-align: center;
 }
@@ -35,4 +39,18 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.nav-link {
+  color: blue;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.nav-link.active {
+  font-weight: bold;
+  color: red;
 }
