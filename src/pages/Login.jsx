@@ -1,29 +1,47 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
-const user = {
-  usuario: {
+const usuarios = {
+  usuario1: {
+    id: 1,
     nombre: "Lupe",
-    role: "Usuario"
+    rol: "Administrador"
   },
-  admin: {
+  usuario2: {
+    id: 2,
     nombre: "Paco",
-    role: "Administrador"
+    rol: "usuario"
   }
 };
 
 export default function Login() {
-  const handleLogin = (tipo) => {
-    localStorage.setItem("usuario", user[tipo].nombre);
-    localStorage.setItem("rol", user[tipo].role);
-    localStorage.setItem("isLogged", "true");
+  const navigate = useNavigate();
 
-    tipo === 'Administrador' ? <Navigate to="/panel" replace={true} /> : <Navigate to="/dashboard" replace={true} />;
+  // Verificar si el usuario ya está logueado al cargar el componente
+  if (localStorage.getItem("isLogged") === "true") { 
+      if (localStorage.getItem("rol") === "Administrador") {
+        return <Navigate to="/panel" replace />;
+      } else {
+        return <Navigate to="/dashboard" replace />;
+      }
+  }
+
+  const handleLogin = (tipo) => {
+    localStorage.setItem("usuario", usuarios[tipo].nombre);
+    localStorage.setItem("rol", usuarios[tipo].rol);
+    localStorage.setItem("isLogged", "true");
+    
+    // Redirigir inmediatamente si es administrador
+    if (usuarios[tipo].rol === "Administrador") {
+      navigate('/panel', { replace: true });
+    } else {
+      navigate('/dashboard', { replace: true });
+    }
   };
 
   return (
     <>
-      <button onClick={handleLogin("usuario")}>Iniciar Sesión User</button>
-      <button onClick={handleLogin("admin")}>Iniciar Sesión Admin</button>
+      <button onClick={() => handleLogin("usuario1")} className='cls-btn'>Iniciar Sesión Administrador</button>&emsp;
+      <button onClick={() => handleLogin("usuario2")} className='cls-btn'>Iniciar Sesión Usuario</button>&emsp;
     </>
   );
 }

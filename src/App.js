@@ -26,7 +26,7 @@ function App() {
         <Route
           path="/dashboard"
           element={
-            <RutaProtegida isLogged={localStorage.getItem('isLogged') || false}>
+            <RutaProtegida isLogged={false}>
               <Dashboard />
             </RutaProtegida>
           }

@@ -54,3 +54,34 @@
   font-weight: bold;
   color: red;
 }
+
+.cls-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color:dodgerblue;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cls-btn-panel{
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cls-link{
+  margin-right: 15px;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.cls-link:hover {
+  text-decoration: underline;
+}
